@@ -1,0 +1,1 @@
+This is a small JQuery script that can be used to show and hide extra content on a page
