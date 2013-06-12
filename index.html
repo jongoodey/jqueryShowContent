@@ -1,0 +1,60 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var limit = 10;
+        var chars = $("#myDiv").text();
+        var charsLength = chars.split(" ");
+        var total = charsLength.length -limit -1;
+        var part2 = charsLength.splice(limit, total);
+        var res2 = part2.join(" ");
+        var word = chars.split(" ", limit);
+        var res = word.join(" ");
+
+        if (charsLength.length > word.length) {
+            var visiblePart = $("<span> "+ res +"</span>");
+            var dots = $("<span class='dots'>... </span>");
+            var hiddenPart = $("<span class='more'>"+ " " + res2 +"</span>");
+            var readMore = $("<span class='read-more'>Read More</span>");
+            var hide = $("<span class='hide'> Hide Content</span>");
+            readMore.click(function() {
+                $(this).prev().toggle(); // remove dots
+                $(this).next().toggle();
+                $(this).toggle(); // remove 'read more'
+                $('.hide').toggle();
+            });
+            hide.click(function() {
+                $('.dots').toggle(); // add dots
+                $('.more').toggle(); // add 'read more'
+                $(this).toggle();
+                $('.read-more').toggle();
+            });
+
+            $("#myDiv").empty()
+                .append(visiblePart)
+                .append(dots)
+                .append(readMore)
+                .append(hiddenPart)
+                .append(hide);
+        }
+    });
+</script>
+<style type="text/css">
+    span.read-more { cursor: pointer; color: red; }
+    span.more { display: none;  }
+    span.hide { display: none; color: red; cursor: pointer;}
+</style>
+</head>
+<body>
+    <div id="myDiv">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer consectetur arcu et euismod dictum. Curabitur blandit rhoncus vehicula. In hac habitasse platea dictumst. Donec elementum malesuada ipsum in interdum. Sed molestie vitae purus non sollicitudin. Mauris lobortis, erat non rutrum ornare, metus sem volutpat leo, id mollis leo sapien sit amet arcu. Praesent et purus eu enim sollicitudin egestas.
+
+Vivamus porttitor at leo et eleifend. Sed molestie diam lorem, ut dignissim diam auctor a. Maecenas id nunc non nunc accumsan pellentesque in facilisis eros. Nulla mattis vulputate elit vitae blandit. Proin nisl diam, luctus ac faucibus ac, laoreet a nunc. Donec ultricies ante a dolor faucibus vulputate. Integer dapibus facilisis erat. Nam dignissim viverra massa, ut varius tellus lacinia eget.
+
+Quisque convallis lectus sit amet mattis venenatis. Vivamus tempus eget sapien pretium suscipit. Curabitur imperdiet nisi a massa pulvinar faucibus. Cras at fringilla arcu. Vivamus tempus semper mauris, vitae vehicula leo porttitor sit amet. Curabitur bibendum nisi at velit convallis, sit amet consectetur elit ultrices. Pellentesque sed consectetur enim, vel venenatis justo. Aliquam erat volutpat. Fusce ac cursus magna, quis sagittis sapien. Praesent lacinia nisi sed quam convallis luctus. Quisque tempor vulputate placerat. Nunc odio lacus, ultricies a purus a, pellentesque elementum purus. Fusce luctus tristique nibh eu tempor. Sed condimentum laoreet pellentesque. Integer odio risus, sodales et metus sed, volutpat iaculis metus. Ut ullamcorper a justo at tempus.
+
+Sed adipiscing orci non neque feugiat, blandit rutrum eros lacinia. Suspendisse potenti. Quisque iaculis gravida ligula, vitae ultricies nibh facilisis id. Ut tempor enim vel porttitor bibendum. Duis semper neque in massa pretium, id semper felis hendrerit. Nulla vitae tortor in ligula porttitor volutpat. Phasellus faucibus nibh tortor, sit amet laoreet augue eleifend eget. Donec dictum eros sed urna cursus gravida. Ut et tristique ante. Duis luctus magna quis eros ultrices malesuada. Integer ligula sem, venenatis iaculis dolor ut, tincidunt venenatis risus.
+
+Vestibulum urna tellus, blandit ac massa in, pretium consectetur augue. Etiam aliquet odio a imperdiet convallis. Quisque ut iaculis tortor. Suspendisse erat diam, sollicitudin at elit id, sollicitudin tincidunt ipsum. Cras magna arcu, aliquet non tempor sed, suscipit id enim. Duis vulputate ante sit amet lacus tempus, vitae mollis eros aliquam. Ut placerat vehicula laoreet. Cras elementum felis non enim malesuada placerat. Etiam est urna, lacinia non cursus sit amet, pulvinar sit amet tortor. Morbi adipiscing dui ac arcu iaculis, eu congue nunc vestibulum.</div>
+</body>
+</html>
