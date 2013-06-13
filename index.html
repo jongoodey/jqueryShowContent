@@ -12,33 +12,33 @@
         var word = chars.split(" ", limit);
         var res = word.join(" ");
 
-        if (charsLength.length > word.length) {
-            var visiblePart = $("<span> "+ res +"</span>");
-            var dots = $("<span class='dots'>... </span>");
-            var hiddenPart = $("<span class='more'>"+ " " + res2 +"</span>");
-            var readMore = $("<span class='read-more'>Read More</span>");
-            var hide = $("<span class='hide'> Hide Content</span>");
-            readMore.click(function() {
-                $(this).prev().toggle(); // remove dots
-                $(this).next().toggle();
-                $(this).toggle(); // remove 'read more'
-                $('.hide').toggle();
-            });
-            hide.click(function() {
-                $('.dots').toggle(); // add dots
-                $('.more').toggle(); // add 'read more'
-                $(this).toggle();
-                $('.read-more').toggle();
-            });
+    if (charsLength.length > word.length) {
+        var visiblePart = $("<span> "+ res +"</span>");
+        var dots = $("<span class='dots'>... </span>");
+        var hiddenPart = $("<span class='more'>"+ " " + res2 +"</span>");
+        var readMore = $("<span class='read-more'>Read More</span>");
+        var hide = $("<span class='hide'> Hide Content</span>");
+        readMore.click(function() {
+            $(this).prevAll('.dots').toggle(); // remove dots
+            $(this).nextAll('.more').toggle();
+            $(this).toggle(); // remove 'read more'
+            $(this).nextAll('.hide').toggle();
+        });
+        hide.click(function() {
+            $(this).prevAll('.dots').toggle(); // add dots
+            $(this).prevAll('.more').toggle(); // add 'read more'
+            $(this).toggle();
+            $(this).prevAll('.read-more').toggle();
+        });
 
-            $("#myDiv").empty()
-                .append(visiblePart)
-                .append(dots)
-                .append(readMore)
-                .append(hiddenPart)
-                .append(hide);
-        }
-    });
+        $(".myDiv").empty()
+            .append(visiblePart)
+            .append(dots)
+            .append(readMore)
+            .append(hiddenPart)
+            .append(hide);
+    }
+});
 </script>
 <style type="text/css">
     span.read-more { cursor: pointer; color: red; }
